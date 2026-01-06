@@ -1,0 +1,24 @@
+name: My Local Runner Demo
+
+on: [push, workflow_dispatch] # 推送代码或手动触发
+
+jobs:
+  hello-job:
+    # 关键点：这里必须写 self-hosted，或者你在配置时填写的自定义 Label
+    runs-on: self-hosted
+
+    steps:
+      - name: Say Hello
+        run: echo "Hello! This job is running on $(hostname)"
+
+      - name: Check Files
+        run: ls -la
+
+      - name: Write a file
+        run: echo "Artifact created at $(date)" > report.txt
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-report
+          path: report.txt
