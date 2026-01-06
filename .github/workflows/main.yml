@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Say Hello
         run: echo "Hello! This job is running on $(hostname)"
+      - name: Print moore devices info
+        run: mthreads-gmi
 
       - name: Check Files
         run: ls -la
